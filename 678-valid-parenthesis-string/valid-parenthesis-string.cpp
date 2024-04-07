@@ -1,24 +1,19 @@
 class Solution {
-public:
+    public:
     bool checkValidString(string s) {
-        stack<int> left, star;
-
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] == '(')  left.push(i);
-            else if (s[i] == '*') star.push(i);
-            else {
-                if (!left.empty())  left.pop();
-                else if (!star.empty())  star.pop();
-                else return false;
+        int leftCount = 0, rightCount = 0;
+        
+        for (char c : s) {
+            leftCount += c == '(' ? 1 : -1;
+            rightCount += c == ')' ? -1 : 1;
+            
+            if (rightCount < 0) {
+                break;
             }
+            
+            leftCount = max(leftCount, 0);
         }
 
-        while (!left.empty() && !star.empty()) {
-            if (left.top() > star.top()) return false;
-            left.pop();
-            star.pop();
-        }
-
-        return left.empty();
+        return leftCount == 0;
     }
 };
