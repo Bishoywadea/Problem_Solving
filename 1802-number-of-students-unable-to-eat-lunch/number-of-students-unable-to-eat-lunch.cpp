@@ -1,25 +1,21 @@
 class Solution {
 public:
     int countStudents(vector<int>& students, vector<int>& sandwiches) {
-        int z=0,o=0;
-        int zz=0,oo=0;
-        for(int i: students) i==1?o++:z++;
-        for(int i: sandwiches) i==1?oo++:zz++;
+        int numOfStudsWant0=0,numOfStudsWant1=0;
+        int numOf0=0,numOf1=0;
+        for(int i: students) i==1?numOfStudsWant1++:numOfStudsWant0++;
+        for(int i: sandwiches) i==1?numOf1++:numOf0++;
 
-        if(zz==z) return 0;
+        if(numOf0==numOfStudsWant0) return 0;
         else {
-            if(zz>z){
-                int i=0;
-                while(z>0) if(!sandwiches[i++]) z--;
-                while(sandwiches[i++]);
-                return sandwiches.size()-i+1;
-            }
-            else{
-                int i=0;
-                while(o>0) if(sandwiches[i++]) o--;
-                while(!sandwiches[i++]);
-                return sandwiches.size()-i+1;
-            }
+            int count = 0;
+            int type = 0;
+            if(numOf0>numOfStudsWant0) count = numOfStudsWant0,type = 0;
+            else count = numOfStudsWant1,type = 1;
+            int i=0;
+            while(count>0) if(sandwiches[i++] == type) count--;
+            while(sandwiches[i++] != type);
+            return sandwiches.size()-i+1;
         }
         return 0;
     }
