@@ -6,12 +6,6 @@ public:
         int n2=0;
         for(auto i:nums1) n1^=i;
         for(auto i:nums2) n2^=i;
-        if(nums2.size()%2==0 && nums1.size()%2){
-            return n2;
-        }
-        else if(nums2.size()%2 && nums1.size()%2==0){
-            return n1;
-        }
-        else return n1^n2;
+         return (n1*(nums2.size()%2))^(n2*(nums1.size()%2));
     }
 };
