@@ -4,7 +4,7 @@ public:
         vector<int> r(mat.size(),mat[0].size());
         vector<int> c(mat[0].size(),mat.size());
 
-        map<int,pair<int,int>> m;
+        unordered_map<int,pair<int,int>> m;
         for(int i=0;i<mat.size();i++){
             for(int j=0;j<mat[0].size();j++){
                 m[mat[i][j]]={i,j};
