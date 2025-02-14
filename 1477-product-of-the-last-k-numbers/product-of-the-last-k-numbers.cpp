@@ -8,17 +8,17 @@ public:
     }
     
     void add(int num) {
-        if(num == 0) s.insert(index), v.push_back(1);
-        else if(v.empty()) v.push_back(num);
-        else v.push_back(v[v.size()-1] * num);
-        index++;
+        if (num == 0) {
+            v.clear();
+            v.push_back(1);
+            return;
+        }
+        v.push_back(v[v.size() - 1] * num);
     }
     
     int getProduct(int k) {
-        for(int i=index;i>=index-k;i--){
-            if(s.find(i)!=s.end()) return 0;
-        }
-        return v[v.size()-1] / v[v.size()-k-1];
+        if (k > v.size() - 1) return 0;
+        return v[v.size() - 1] / v[v.size() - k - 1];
     }
 };
 
